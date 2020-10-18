@@ -15,6 +15,8 @@ const services = require('./services')
 const appHooks = require('./app.hooks')
 const channels = require('./channels')
 
+const kubernetes = require('./kubernetes')
+
 const app = express(feathers())
 
 // Load app configuration
@@ -34,6 +36,8 @@ app.use('/', express.static(app.get('public')))
 // Set up Plugins and providers
 app.configure(express.rest())
 app.configure(socketio())
+
+app.configure(kubernetes)
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware)
