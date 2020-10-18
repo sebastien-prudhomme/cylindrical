@@ -37,6 +37,7 @@
     "ignore": []
   },
   "dependencies": {
+    "@feathers-plus/validate-joi": "^3.4.0",
     "@feathersjs/configuration": "^4.5.9",
     "@feathersjs/errors": "^4.5.9",
     "@feathersjs/express": "^4.5.9",
