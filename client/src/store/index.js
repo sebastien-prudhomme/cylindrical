@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { initFeathers } from './feathers'
 
+import fingerprint from './fingerprint'
 import makeTestsslJobsService from './services/testssl-jobs'
 
 Vue.use(Vuex)
@@ -20,6 +21,7 @@ export default function ({ ssrContext }) {
 
   const Store = new Vuex.Store({
     modules: {
+      fingerprint
     },
     plugins: [
       makeTestsslJobsService()
