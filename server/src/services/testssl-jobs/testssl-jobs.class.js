@@ -1,6 +1,14 @@
 const errors = require('@feathersjs/errors')
 const request = require('request-promise-native')
 
+function buildResult (item) {
+  return {
+    id: item.metadata.name,
+    parameters: item.spec.arguments.parameters,
+    phase: item.status === undefined ? undefined : item.status.phase
+  }
+}
+
 exports.TestsslJobs = class TestsslJobs {
   constructor (app) {
     this.kubeConfig = app.get('kubeConfig')
@@ -16,7 +24,7 @@ exports.TestsslJobs = class TestsslJobs {
     try {
       const response = await request.get(requestOpts)
 
-      return response.items.map(item => ({ id: item.metadata.name }))
+      return response.items.map(item => buildResult(item))
     } catch (error) {
       throw new errors.GeneralError(error)
     }
@@ -31,7 +39,7 @@ exports.TestsslJobs = class TestsslJobs {
     try {
       const response = await request.get(requestOpts)
 
-      return { id: response.metadata.name }
+      return buildResult(response)
     } catch (error) {
       throw new errors.GeneralError(error)
     }
@@ -69,7 +77,7 @@ exports.TestsslJobs = class TestsslJobs {
     try {
       const response = await request.post(requestOpts)
 
-      return { id: response.metadata.name }
+      return buildResult(response)
     } catch (error) {
       throw new errors.GeneralError(error)
     }
