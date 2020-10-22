@@ -36,14 +36,16 @@ export default {
   },
   methods: {
     submit: async function () {
-      const testsslJob = {
+      const parameters = {
         target: this.target
       }
 
       this.loading = true
 
+      let testsslJob
+
       try {
-        await this.$store.dispatch('testssl-jobs/create', testsslJob)
+        testsslJob = await this.$store.dispatch('testssl-jobs/create', parameters)
 
         this.target = ''
 
@@ -53,6 +55,8 @@ export default {
       }
 
       this.loading = false
+
+      this.$router.push(`/${testsslJob.id}`)
     }
   }
 
