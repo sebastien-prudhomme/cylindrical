@@ -6,7 +6,7 @@
     <q-card v-if="testsslJob" bordered class="bg-blue-2" flat>
       <q-card-section>
         <div>Id: {{ testsslJob.id }}</div>
-        <div v-for="parameter in testsslJob.parameters" v-bind:key="parameter.name">
+        <div v-for="parameter in testsslJob.parameters" :key="parameter.name">
           <div>Name: {{ parameter.name }}</div>
           <div>Value: {{ parameter.value }}</div>
         </div>

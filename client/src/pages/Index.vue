@@ -14,15 +14,31 @@
         </q-btn>
       </div>
     </q-form>
+    <div v-for="testsslJob in testsslJobs" :key="testsslJob.id">
+      <q-card v-if="testsslJob" bordered class="bg-blue-2 cursor-pointer" flat @click="$router.push(`/${testsslJob.id}`)">
+        <q-card-section>
+          <div>Id: {{ testsslJob.id }}</div>
+          <div v-for="parameter in testsslJob.parameters" :key="parameter.name">
+            <div>Name: {{ parameter.name }}</div>
+            <div>Value: {{ parameter.value }}</div>
+          </div>
+          <div>Phase: {{ testsslJob.phase }}</div>
+        </q-card-section>
+      </q-card>
+    </div>
   </q-page>
 </template>
 
 <script>
+import { makeFindMixin } from 'feathers-vuex'
 import validate from '../helpers/validate'
 import Joi from '@hapi/joi'
 
 export default {
   name: 'Index',
+  mixins: [makeFindMixin({
+    service: 'testssl-jobs'
+  })],
   data () {
     return {
       target: '',
@@ -30,6 +46,11 @@ export default {
     }
   },
   computed: {
+    testsslJobsParams () {
+      const query = {}
+
+      return { query }
+    },
     targetRules: function () {
       return validate(Joi.string().domain())
     }
