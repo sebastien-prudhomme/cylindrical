@@ -22,7 +22,11 @@
             <div>Name: {{ parameter.name }}</div>
             <div>Value: {{ parameter.value }}</div>
           </div>
-          <div>Phase: {{ testsslJob.phase }}</div>
+          <div>
+            <q-spinner v-if="testsslJob.phase === 'Running'" class="on-left" :color="jobColor(testsslJob)" size="sm" />
+            <q-icon v-if="testsslJob.phase !== 'Running'" class="on-left" :color="jobColor(testsslJob)" :name="jobIcon(testsslJob)" size="sm" />
+            {{ testsslJob.phase }}
+          </div>
         </q-card-section>
       </q-card>
     </div>
@@ -31,7 +35,8 @@
 
 <script>
 import { makeFindMixin } from 'feathers-vuex'
-import validate from '../helpers/validate'
+import { jobColorHelper, jobIconHelper } from '../helpers/job'
+import { validateHelper } from '../helpers/validate'
 import Joi from '@hapi/joi'
 
 export default {
@@ -46,13 +51,23 @@ export default {
     }
   },
   computed: {
+    jobColor: function () {
+      return function (job) {
+        return jobColorHelper(job)
+      }
+    },
+    jobIcon: function () {
+      return function (job) {
+        return jobIconHelper(job)
+      }
+    },
     testsslJobsParams () {
       const query = {}
 
       return { query }
     },
     targetRules: function () {
-      return validate(Joi.string().domain())
+      return validateHelper(Joi.string().domain())
     }
   },
   methods: {

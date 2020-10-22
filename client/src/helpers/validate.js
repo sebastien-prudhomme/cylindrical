@@ -1,6 +1,6 @@
 import { i18n } from '../boot/i18n'
 
-export default function (schema) {
+function validateHelper (schema) {
   return [
     value => {
       const { error } = schema.validate(value)
@@ -9,3 +9,5 @@ export default function (schema) {
     }
   ]
 }
+
+export { validateHelper }
