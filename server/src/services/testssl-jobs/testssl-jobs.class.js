@@ -62,7 +62,7 @@ exports.TestsslJobs = class TestsslJobs {
 
   async find (params) {
     const requestOpts = {
-      uri: `${this.kubeConfig.getCurrentCluster().server}/apis/argoproj.io/v1alpha1/namespaces/default/workflows`,
+      uri: `${this.kubeConfig.getCurrentCluster().server}/apis/argoproj.io/v1alpha1/namespaces/cylindrical/workflows`,
       ...this.kubeRequestOpts
     }
 
@@ -77,7 +77,7 @@ exports.TestsslJobs = class TestsslJobs {
 
   async get (id, params) {
     const requestOpts = {
-      uri: `${this.kubeConfig.getCurrentCluster().server}/apis/argoproj.io/v1alpha1/namespaces/default/workflows/${id}`,
+      uri: `${this.kubeConfig.getCurrentCluster().server}/apis/argoproj.io/v1alpha1/namespaces/cylindrical/workflows/${id}`,
       ...this.kubeRequestOpts
     }
 
@@ -114,7 +114,7 @@ exports.TestsslJobs = class TestsslJobs {
     }
 
     const requestOpts = {
-      uri: `${this.kubeConfig.getCurrentCluster().server}/apis/argoproj.io/v1alpha1/namespaces/default/workflows`,
+      uri: `${this.kubeConfig.getCurrentCluster().server}/apis/argoproj.io/v1alpha1/namespaces/cylindrical/workflows`,
       body: workflow,
       ...this.kubeRequestOpts
     }
