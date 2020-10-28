@@ -1,0 +1,15 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: cylindrical-server
+build:
+  artifacts:
+    - image: rg.fr-par.scw.cloud/sebastienprudhomme/cylindrical-server
+      docker:
+        dockerfile: Dockerfile.dev
+  tagPolicy:
+    sha256: {}
+deploy:
+  kubectl:
+    manifests:
+      - kubernetes/*.yaml
