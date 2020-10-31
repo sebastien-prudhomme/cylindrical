@@ -5,7 +5,7 @@ function buildResult (item) {
   return {
     id: item.metadata.name,
     parameters: item.spec.arguments.parameters,
-    phase: item.status === undefined ? undefined : item.status.phase
+    phase: item.status === undefined ? null : item.status.phase
   }
 }
 
@@ -103,7 +103,7 @@ exports.TestsslJobs = class TestsslJobs {
           parameters: [
             {
               name: 'target',
-              value: data.target
+              value: data.parameters.target
             }
           ]
         },
@@ -126,5 +126,15 @@ exports.TestsslJobs = class TestsslJobs {
     } catch (error) {
       throw buildKubernetesError(error)
     }
+  }
+
+  // Called by 'testssl-events' service to refresh clients
+  async update (id, data, params) {
+    return { id, ...data }
+  }
+
+  // Called by 'testssl-events' service to refresh clients
+  async remove (id, params) {
+    return { id }
   }
 }
