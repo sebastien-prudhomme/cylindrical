@@ -1,21 +1,8 @@
-const { disallow } = require('feathers-hooks-common')
 const Joi = require('@hapi/joi')
 const validateJoi = require('@feathers-plus/validate-joi')
 
 const joiCreateSchema = Joi.object({
-  parameters: Joi.array().items(Joi.object({
-    name: 'target',
-    value: Joi.string().domain()
-  }))
-})
-
-const joiUpdateSchema = Joi.object({
-  id: Joi.string().trim().min(1),
-  parameters: Joi.array().items(Joi.object({
-    name: 'target',
-    value: Joi.string().domain()
-  })),
-  phase: Joi.string().valid('Error', 'Failed', 'Omitted', 'Pending', 'Running', 'Skipped', 'Succeeded')
+  event: Joi.string().trim().min(1)
 })
 
 const joiOptions = {
@@ -31,12 +18,9 @@ module.exports = {
     find: [],
     get: [],
     create: [validateJoi.form(joiCreateSchema, joiOptions)],
-    update: [
-      disallow('external'),
-      validateJoi.form(joiUpdateSchema, joiOptions)
-    ],
+    update: [],
     patch: [],
-    remove: [disallow('external')]
+    remove: []
   },
 
   after: {
