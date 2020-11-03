@@ -16,6 +16,7 @@ const appHooks = require('./app.hooks')
 const channels = require('./channels')
 
 const kubernetes = require('./kubernetes')
+const minio = require('./minio')
 
 const app = express(feathers())
 
@@ -38,6 +39,7 @@ app.configure(express.rest())
 app.configure(socketio())
 
 app.configure(kubernetes)
+app.configure(minio)
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware)

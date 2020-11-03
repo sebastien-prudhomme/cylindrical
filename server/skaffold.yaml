@@ -13,3 +13,12 @@ deploy:
   kubectl:
     manifests:
       - kubernetes/*.yaml
+portForward:
+  - resourceType: service
+    resourceName: argo-server
+    namespace: argo
+    port: 2746
+  - resourceType: service
+    resourceName: minio
+    namespace: minio
+    port: 9000

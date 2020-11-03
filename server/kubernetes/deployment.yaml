@@ -18,6 +18,19 @@ spec:
       containers:
         - name: cylindrical-server
           image: rg.fr-par.scw.cloud/sebastienprudhomme/cylindrical-server
+          env:
+            - name: MINIO_END_POINT
+              value: minio.minio
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio
+                  key: accesskey
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio
+                  key: secretkey
           ports:
             - name: http
               containerPort: 3030

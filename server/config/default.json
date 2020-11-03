@@ -5,5 +5,12 @@
   "paginate": {
     "default": 10,
     "max": 50
+  },
+  "minio": {
+    "endPoint": "localhost",
+    "port": 9000,
+    "useSSL": false,
+    "accessKey": "",
+    "secretKey": ""
   }
 }
