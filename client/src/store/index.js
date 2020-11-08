@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { initFeathers } from './feathers'
 
 import fingerprint from './fingerprint'
+import makeTestsslArtifactsService from './services/testssl-artifacts'
 import makeTestsslJobsService from './services/testssl-jobs'
 
 Vue.use(Vuex)
@@ -24,6 +25,7 @@ export default function ({ ssrContext }) {
       fingerprint
     },
     plugins: [
+      makeTestsslArtifactsService(),
       makeTestsslJobsService()
     ],
 
