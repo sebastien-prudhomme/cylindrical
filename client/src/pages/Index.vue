@@ -30,11 +30,11 @@
         </q-card-section>
       </q-card>
     </div>
-    <div class="bg-black rounded-borders text-weight-medium text-white">
+    <div class="bg-black q-pa-xs rounded-borders text-weight-medium text-white">
       <span class="q-pa-sm">
         Build with
       </span>
-      <q-btn dense href="https://argoproj.github.io/" no-caps type="a">
+      <q-btn href="https://argoproj.github.io/" no-caps padding="xs" type="a">
         <q-chip color="secondary" square text-color="white">
           <q-avatar>
             <img src="~assets/argo.png">
@@ -42,7 +42,7 @@
           Argo
         </q-chip>
       </q-btn>
-      <q-btn dense href="https://feathersjs.com/" no-caps type="a">
+      <q-btn href="https://feathersjs.com/" no-caps padding="xs" type="a">
         <q-chip color="secondary" square text-color="white">
           <q-avatar>
             <img src="~assets/feathers.png">
@@ -50,7 +50,7 @@
           Feathers
         </q-chip>
       </q-btn>
-      <q-btn dense href="https://quasar.dev/" no-caps type="a">
+      <q-btn href="https://quasar.dev/" no-caps padding="xs" type="a">
         <q-chip color="secondary" square text-color="white">
           <q-avatar>
             <img src="~assets/quasar.png">
@@ -58,7 +58,7 @@
           Quasar
         </q-chip>
       </q-btn>
-      <q-btn dense href="https://testssl.sh/" no-caps type="a">
+      <q-btn href="https://testssl.sh/" no-caps padding="xs" type="a">
         <q-chip color="secondary" square text-color="white">
           <q-avatar>
             <img src="~assets/testssl.png">
