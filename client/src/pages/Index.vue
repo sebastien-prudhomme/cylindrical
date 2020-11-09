@@ -34,38 +34,10 @@
       <span class="q-pa-sm">
         Build with
       </span>
-      <q-btn href="https://argoproj.github.io/" no-caps padding="xs" type="a">
-        <q-chip color="secondary" square text-color="white">
-          <q-avatar>
-            <img src="~assets/argo.png">
-          </q-avatar>
-          Argo
-        </q-chip>
-      </q-btn>
-      <q-btn href="https://feathersjs.com/" no-caps padding="xs" type="a">
-        <q-chip color="secondary" square text-color="white">
-          <q-avatar>
-            <img src="~assets/feathers.png">
-          </q-avatar>
-          Feathers
-        </q-chip>
-      </q-btn>
-      <q-btn href="https://quasar.dev/" no-caps padding="xs" type="a">
-        <q-chip color="secondary" square text-color="white">
-          <q-avatar>
-            <img src="~assets/quasar.png">
-          </q-avatar>
-          Quasar
-        </q-chip>
-      </q-btn>
-      <q-btn href="https://testssl.sh/" no-caps padding="xs" type="a">
-        <q-chip color="secondary" square text-color="white">
-          <q-avatar>
-            <img src="~assets/testssl.png">
-          </q-avatar>
-          Testssl
-        </q-chip>
-      </q-btn>
+      <btn-credit href="https://argoproj.github.io/" img="argo.png" label="Argo" />
+      <btn-credit href="https://feathersjs.com/" img="feathers.png" label="Feathers" />
+      <btn-credit href="https://quasar.dev/" img="quasar.png" label="Quasar" />
+      <btn-credit href="https://testssl.sh/" img="testssl.png" label="Testssl" />
     </div>
   </q-page>
 </template>
@@ -78,6 +50,9 @@ import Joi from '@hapi/joi'
 
 export default {
   name: 'Index',
+  components: {
+    BtnCredit: () => import('components/BtnCredit')
+  },
   mixins: [makeFindMixin({
     service: 'testssl-jobs'
   })],
