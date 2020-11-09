@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import messages from 'src/i18n'
+import { lookup, navigatorLanguages } from 'langtag-utils'
 
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-  locale: 'en-us',
-  fallbackLocale: 'en-us',
+  locale: lookup(Object.keys(messages), navigatorLanguages(), 'en-us'),
   messages
 })
 
