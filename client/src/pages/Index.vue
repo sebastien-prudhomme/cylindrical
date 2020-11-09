@@ -84,8 +84,13 @@ export default {
   },
   methods: {
     submit: async function () {
-      const parameters = {
-        target: this.target
+      const data = {
+        parameters: [
+          {
+            name: 'target',
+            value: this.target
+          }
+        ]
       }
 
       this.loading = true
@@ -93,7 +98,7 @@ export default {
       let testsslJob
 
       try {
-        testsslJob = await this.$store.dispatch('testssl-jobs/create', parameters)
+        testsslJob = await this.$store.dispatch('testssl-jobs/create', data)
 
         this.target = ''
 
