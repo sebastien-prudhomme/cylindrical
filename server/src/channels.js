@@ -47,6 +47,7 @@ module.exports = function (app) {
   // Here you can also add service specific event publishers
   // e.g. the publish the `users` service `created` event to the `admins` channel
   // app.service('users').publish('created', () => app.channel('admins'));
+  app.service('testssl-artifact-events').publish(() => null)
   app.service('testssl-events').publish(() => null)
 
   // With the userid and email organization from above you can easily select involved users

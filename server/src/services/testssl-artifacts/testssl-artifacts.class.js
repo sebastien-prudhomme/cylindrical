@@ -31,4 +31,14 @@ exports.TestsslArtifacts = class TestsslArtifacts {
       throw new errors.GeneralError(error.message)
     }
   }
+
+  // Called by 'testssl-artifact-events' service to refresh clients
+  async create (data, params) {
+    return this.get(data.id)
+  }
+
+  // Called by 'testssl-artifact-events' service to refresh clients
+  async remove (id, params) {
+    return { id }
+  }
 }
