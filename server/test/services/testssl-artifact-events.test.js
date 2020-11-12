@@ -1,4 +1,4 @@
-const assert = require('assert');
+const assert = require('assert')
 const app = require('../../src/app')
 
 describe('\'testssl-artifact-events\' service', () => {

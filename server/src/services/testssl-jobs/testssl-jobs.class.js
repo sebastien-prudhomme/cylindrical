@@ -70,12 +70,12 @@ exports.TestsslJobs = class TestsslJobs {
     }
   }
 
-  // Called by 'testssl-events' service to refresh clients
+  // Called by 'testssl-job-events' service to refresh clients
   async update (id, data, params) {
-    return { id, ...data }
+    return this.get(id)
   }
 
-  // Called by 'testssl-events' service to refresh clients
+  // Called by 'testssl-job-events' service to refresh clients
   async remove (id, params) {
     return { id }
   }

@@ -17,10 +17,10 @@ const joiOptions = {
 
 const joiFindOptions = {
   ...joiOptions,
-  getContext(context) {
+  getContext (context) {
     return context.params.query
   },
-  setContext(context, values) {
+  setContext (context, values) {
     Object.assign(context.params.query, values)
   }
 }

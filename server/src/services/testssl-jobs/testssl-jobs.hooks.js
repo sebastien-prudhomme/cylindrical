@@ -10,15 +10,6 @@ const joiCreateSchema = Joi.object({
   }))
 })
 
-const joiUpdateSchema = Joi.object({
-  id: Joi.string().trim().min(1),
-  parameters: Joi.array().items(Joi.object({
-    name: 'target',
-    value: Joi.string().domain()
-  })),
-  phase: Joi.string().valid('Error', 'Failed', 'Omitted', 'Pending', 'Running', 'Skipped', 'Succeeded')
-})
-
 const joiOptions = {
   abortEarly: false,
   allowUnknown: false,
@@ -47,10 +38,7 @@ module.exports = {
     find: [],
     get: [],
     create: [validateJoi.form(joiCreateSchema, joiOptions)],
-    update: [
-      disallow('external'),
-      validateJoi.form(joiUpdateSchema, joiOptions)
-    ],
+    update: [disallow('external')],
     patch: [],
     remove: [disallow('external')]
   },

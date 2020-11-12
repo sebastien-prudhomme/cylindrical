@@ -1,6 +1,6 @@
-const { buildKubernetesId, buildKubernetesData } = require('../../helpers/kubernetes')
+const { buildKubernetesId } = require('../../helpers/kubernetes')
 
-exports.TestsslEvents = class TestsslEvents {
+exports.TestsslJobEvents = class TestsslJobEvents {
   constructor (app) {
     this.app = app
   }
@@ -10,13 +10,12 @@ exports.TestsslEvents = class TestsslEvents {
     const eventData = JSON.parse(Buffer.from(event.data, 'base64').toString())
 
     const id = buildKubernetesId(eventData.body)
-    const updateData = buildKubernetesData(eventData.body)
 
     switch (eventData.type) {
       case 'ADD':
         break
       case 'UPDATE':
-        await this.app.service('testssl-jobs').update(id, updateData)
+        await this.app.service('testssl-jobs').update(id, {})
         break
       case 'DELETE':
         await this.app.service('testssl-jobs').remove(id)
