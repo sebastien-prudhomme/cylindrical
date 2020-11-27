@@ -16,6 +16,7 @@
     "@fingerprintjs/fingerprintjs": "^3.0.0",
     "@hapi/joi": "^17.1.1",
     "@quasar/extras": "^1.0.0",
+    "@quasar/icongenie": "^2.3.3",
     "@vue/composition-api": "^1.0.0-beta.17",
     "core-js": "^3.6.5",
     "feathers-graph-populate": "^1.1.0",
