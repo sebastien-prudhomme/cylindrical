@@ -34,17 +34,27 @@ export default {
   computed: {
     artifact: function () {
       return function (type) {
-        const artifactId = `${this.testsslJob.id}/output.${type}`
-        const artifact = this.testsslJob.artifacts.find(artifact => artifact.id === artifactId)
+        if (this.testsslJob && this.testsslJob.artifacts) {
+          const artifactId = `${this.testsslJob.id}/output.${type}`
+          const artifact = this.testsslJob.artifacts.find(artifact => artifact.id === artifactId)
 
-        return artifact
+          return artifact === undefined ? null : artifact
+        } else {
+          return null
+        }
       }
     },
     html: function () {
-      const log = this.artifact('log').content
-      const html = new AnsiToHtml({ newline: true }).toHtml(log)
+      const artifact = this.artifact('log')
 
-      return html
+      if (artifact) {
+        const log = artifact.content
+        const html = new AnsiToHtml({ newline: true }).toHtml(log)
+
+        return html
+      } else {
+        return null
+      }
     },
     testsslJobParams () {
       return { $populateParams: { name: 'withArtifacts' } }
