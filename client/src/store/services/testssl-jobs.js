@@ -1,14 +1,20 @@
 import { getApplication, getApplicationVuex } from '../feathers'
-const { paramsForServer } = require('feathers-graph-populate')
+import { handleServerPopulatedReferences } from '../handle-server-populated-references'
+import { paramsForServer } from 'feathers-graph-populate'
 
 export default function () {
   class TestsslJob extends getApplicationVuex().BaseModel {
     static modelName = 'TestsslJob'
 
     static setupInstance (data, { models }) {
-      if (data.artifacts) {
-        data.artifacts = data.artifacts.map(artifact => new models.api.TestsslArtifact(artifact))
+      const populate = {
+        model: models.api.TestsslArtifact,
+        keyHere: 'id',
+        keyThere: 'jobId',
+        asArray: true
       }
+
+      handleServerPopulatedReferences(data, 'artifacts', populate)
 
       return data
     }
