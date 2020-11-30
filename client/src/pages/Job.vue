@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page padding>
     <q-card v-if="testsslJob" bordered class="bg-blue-2" flat>
       <q-card-section>
         <div>Id: {{ testsslJob.id }}</div>

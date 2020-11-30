@@ -3,12 +3,18 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+    <q-footer reveal>
+      <app-footer />
+    </q-footer>
   </q-layout>
 </template>
 
 <script>
 export default {
-  name: 'MainLayout'
+  name: 'MainLayout',
+  components: {
+    AppFooter: () => import('components/AppFooter')
+  }
 }
 </script>
 

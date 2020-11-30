@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page padding>
     <h4 class="q-mt-none gt-sm">
       {{ $t('menu_testssl') }}
     </h4>
@@ -30,15 +30,6 @@
         </q-card-section>
       </q-card>
     </div>
-    <div class="bg-black q-pa-xs rounded-borders text-weight-medium text-white">
-      <span class="q-pa-sm">
-        Build with
-      </span>
-      <btn-credit href="https://argoproj.github.io/" img="argo.png" label="Argo" />
-      <btn-credit href="https://feathersjs.com/" img="feathers.png" label="Feathers" />
-      <btn-credit href="https://quasar.dev/" img="quasar.png" label="Quasar" />
-      <btn-credit href="https://testssl.sh/" img="testssl.png" label="Testssl" />
-    </div>
   </q-page>
 </template>
 
@@ -50,9 +41,6 @@ import Joi from '@hapi/joi'
 
 export default {
   name: 'Index',
-  components: {
-    BtnCredit: () => import('components/BtnCredit')
-  },
   mixins: [makeFindMixin({
     service: 'testssl-jobs'
   })],
