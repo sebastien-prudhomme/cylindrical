@@ -1,19 +1,18 @@
 <template>
   <q-page padding>
-    <h4 class="q-mt-none gt-sm">
-      {{ $t('menu_testssl') }}
-    </h4>
-    <q-form class="q-gutter-md" greedy ref="form" @submit="submit">
-      <q-input :label="$t('target')" lazy-rules outlined :rules="targetRules" stack-label v-model="target" />
-      <div class="row justify-end">
-        <q-btn color="primary" icon="fas fa-play" :label="$t('submit')" :loading="loading" outline type="submit">
-          <template v-slot:loading>
-            <q-spinner class="on-left" />
-            {{ $t('submit') }}
-          </template>
-        </q-btn>
-      </div>
-    </q-form>
+    <div class="bg-white q-pa-md rounded-borders">
+      <q-form class="q-gutter-md" greedy ref="form" @submit="submit">
+        <q-input :label="$t('target')" lazy-rules outlined :rules="targetRules" stack-label v-model="target" />
+        <div class="row justify-end">
+          <q-btn color="primary" icon="fas fa-play" :label="$t('submit')" :loading="loading" outline type="submit">
+            <template v-slot:loading>
+              <q-spinner class="on-left" />
+              {{ $t('submit') }}
+            </template>
+          </q-btn>
+        </div>
+      </q-form>
+    </div>
     <div v-for="testsslJob in testsslJobs" :key="testsslJob.id">
       <q-card v-if="testsslJob" bordered class="bg-blue-2 cursor-pointer" flat @click="$router.push(`/${testsslJob.id}`)">
         <q-card-section>
