@@ -1,5 +1,11 @@
 export default {
   build_with: 'Build with',
+  cipher_strength: 'Cipher strength',
+  final_score: 'Final score',
+  key_exchange: 'Key exchange',
+  overall_grade: 'Overall grade',
+  protocol_support: 'Protocol support',
+  score: 'Score',
   submit: 'Submit',
   target: 'Target',
   validate: {
