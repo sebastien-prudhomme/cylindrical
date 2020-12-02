@@ -2,30 +2,39 @@
   <q-page padding>
     <div v-if="!testsslJobError">
       <div class="rounded-borders bg-white">
-        <div class="text-h4 text-weight-bold q-pa-md text-center text-uppercase ellipsis">
-          {{ parameter('target') }}
+        <div class="q-pa-md">
+          <div v-if="testsslJob" class="text-h4 text-weight-bold text-center text-uppercase ellipsis">
+            {{ parameter('target') }}
+          </div>
+          <q-skeleton v-else animation="fade" class="text-h4" type="rect" />
         </div>
         <div class="row">
           <div class="column items-center justify-center col-xs-12 col-sm-6 col-md-3 q-pa-md">
             <div class="text-h4 text-center">
               {{ $t('overall_grade') }}
             </div>
-            <q-avatar class="q-mt-md" :color="gradeColor(finding('overall_grade'))" rounded size="128px" text-color="white">
-              {{ finding('overall_grade') }}
-            </q-avatar>
+            <div class="q-mt-md">
+              <q-avatar v-if="finding('overall_grade')" :color="gradeColor(finding('overall_grade'))" rounded size="128px" text-color="white">
+                {{ finding('overall_grade') }}
+              </q-avatar>
+              <q-skeleton v-else animation="fade" size="128px" type="rect" />
+            </div>
           </div>
           <div class="column items-center justify-center col-xs-12 col-sm-6 col-md-3 q-pa-md">
             <div class="text-h4 text-center">
               {{ $t('final_score') }}
             </div>
-            <q-avatar class="q-mt-md" :color="scoreColor(finding('final_score'))" rounded size="128px" text-color="white">
-              {{ finding('final_score') }}
-            </q-avatar>
+            <div class="q-mt-md">
+              <q-avatar v-if="finding('final_score')" :color="scoreColor(finding('final_score'))" rounded size="128px" text-color="white">
+                {{ finding('final_score') }}
+              </q-avatar>
+              <q-skeleton v-else animation="fade" size="128px" type="rect" />
+            </div>
           </div>
           <apexchart class="col-xs-12 col-md-6 q-pa-md" height="256px" :options="graphOptions" :series="graphSeries" />
         </div>
       </div>
-      <pre class="overflow-auto q-mt-md q-mb-none q-pa-md text-white rounded-borders bg-blue-grey-10" v-html="html" />
+      <pre v-if="html" class="overflow-auto q-mt-md q-mb-none q-pa-md text-white rounded-borders bg-blue-grey-10" v-html="html" />
     </div>
     <div v-if="testsslJobError" class="q-pa-md text-negative rounded-borders bg-red-2">
       <q-icon left name="warning" size="md" />
