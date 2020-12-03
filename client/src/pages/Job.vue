@@ -46,6 +46,8 @@
 <script>
 import AnsiToHtml from 'ansi-to-html'
 import { makeGetMixin } from 'feathers-vuex'
+import { partial } from 'lodash'
+import { jobArtifactHelper, jobFindingHelper, jobGradeColorHelper, jobParameterHelper, jobScoreColorHelper } from '../helpers/job'
 
 export default {
   name: 'Job',
@@ -119,41 +121,13 @@ export default {
   },
   computed: {
     artifact: function () {
-      return function (type) {
-        if (this.testsslJob && this.testsslJob.artifacts) {
-          const artifactId = `${this.testsslJob.id}/output.${type}`
-          const artifact = this.testsslJob.artifacts.find(artifact => artifact.id === artifactId)
-
-          return artifact === undefined ? null : artifact
-        } else {
-          return null
-        }
-      }
+      return partial(jobArtifactHelper, this.testsslJob)
     },
     finding: function () {
-      return function (id) {
-        const artifact = this.artifact('json')
-
-        if (artifact) {
-          const json = JSON.parse(artifact.content)
-          const finding = json.find(item => item.id === id).finding
-
-          return finding === undefined ? null : finding
-        } else {
-          return null
-        }
-      }
+      return partial(jobFindingHelper, this.testsslJob)
     },
     gradeColor () {
-      return function (grade) {
-        if (grade[0] === 'A') {
-          return 'positive'
-        } else if (grade[0] === 'B' || grade[0] === 'C') {
-          return 'warning'
-        } else {
-          return 'negative'
-        }
-      }
+      return jobGradeColorHelper
     },
     graphSeries () {
       const protocolSupportScore = this.finding('protocol_support_score')
@@ -184,26 +158,10 @@ export default {
       }
     },
     parameter () {
-      return function (name) {
-        if (this.testsslJob) {
-          const parameter = this.testsslJob.parameters.find(parameter => parameter.name === name)
-
-          return parameter === undefined ? null : parameter.value
-        } else {
-          return null
-        }
-      }
+      return partial(jobParameterHelper, this.testsslJob)
     },
     scoreColor () {
-      return function (score) {
-        if (score >= 80) {
-          return 'positive'
-        } else if (score >= 50) {
-          return 'warning'
-        } else {
-          return 'negative'
-        }
-      }
+      return jobScoreColorHelper
     },
     testsslJobParams () {
       return { $populateParams: { name: 'withArtifacts' } }
