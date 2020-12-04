@@ -108,7 +108,8 @@ module.exports = function (ctx) {
       // Quasar plugins
       plugins: [
         'Cookies'
-      ]
+      ],
+      cssAddon: true
     },
 
     // animations: 'all', // --- includes all animations
