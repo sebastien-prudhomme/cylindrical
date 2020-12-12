@@ -13,12 +13,15 @@ exports.TestsslJobEvents = class TestsslJobEvents {
 
     switch (eventData.type) {
       case 'ADD':
+        await this.app.service('testssl-job-stats').update('running', {})
         break
       case 'UPDATE':
         await this.app.service('testssl-jobs').update(id, {})
+        await this.app.service('testssl-job-stats').update('running', {})
         break
       case 'DELETE':
         await this.app.service('testssl-jobs').remove(id)
+        await this.app.service('testssl-job-stats').update('running', {})
         break
       default:
         break
