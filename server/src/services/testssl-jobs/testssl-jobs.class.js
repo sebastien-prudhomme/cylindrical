@@ -1,8 +1,10 @@
+const errors = require('@feathersjs/errors')
 const request = require('request-promise-native')
 const { buildKubernetesData, buildKubernetesError } = require('../../helpers/kubernetes')
 
 exports.TestsslJobs = class TestsslJobs {
   constructor (app) {
+    this.app = app
     this.kubeConfig = app.get('kubeConfig')
     this.kubeRequestOpts = app.get('kubeRequestOpts')
   }
@@ -38,6 +40,13 @@ exports.TestsslJobs = class TestsslJobs {
   }
 
   async create (data, params) {
+    const pending = await this.app.service('testssl-job-stats').get('pending')
+    const pendingMax = await this.app.service('testssl-job-stats').get('pendingMax')
+
+    if (pending.value >= pendingMax.value) {
+      throw new errors.Unavailable()
+    }
+
     const workflow = {
       apiVersion: 'argoproj.io/v1alpha1',
       kind: 'Workflow',
