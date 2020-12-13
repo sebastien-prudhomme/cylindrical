@@ -1,0 +1,48 @@
+diff --git a/node_modules/feathers-vuex/dist/make-find-mixin.js b/node_modules/feathers-vuex/dist/make-find-mixin.js
+index 9b6ce61..7f43255 100644
+--- a/node_modules/feathers-vuex/dist/make-find-mixin.js
++++ b/node_modules/feathers-vuex/dist/make-find-mixin.js
+@@ -40,7 +40,7 @@ export default function makeFindMixin(options) {
+   if (typeof service === 'function' && !name) {
+     name = 'service'
+   }
+-  const nameToUse = (name || service).replace('-', '_')
++  const nameToUse = (name || service).replace(/-/g, '_')
+   const prefix = getServicePrefix(nameToUse)
+   const capitalized = getServiceCapitalization(nameToUse)
+   const SERVICE_NAME = `${prefix}ServiceName`
+diff --git a/node_modules/feathers-vuex/dist/make-get-mixin.js b/node_modules/feathers-vuex/dist/make-get-mixin.js
+index d30bc05..f772e9b 100644
+--- a/node_modules/feathers-vuex/dist/make-get-mixin.js
++++ b/node_modules/feathers-vuex/dist/make-get-mixin.js
+@@ -34,7 +34,7 @@ export default function makeFindMixin(options) {
+   if (typeof service === 'function' && !name) {
+     name = 'service'
+   }
+-  const nameToUse = (name || service).replace('-', '_')
++  const nameToUse = (name || service).replace(/-/g, '_')
+   const singularized = inflection.singularize(nameToUse)
+   const prefix = inflection.camelize(singularized, true)
+   const capitalized = prefix.charAt(0).toUpperCase() + prefix.slice(1)
+diff --git a/node_modules/feathers-vuex/dist/utils.js b/node_modules/feathers-vuex/dist/utils.js
+index 6ba1017..231cd56 100644
+--- a/node_modules/feathers-vuex/dist/utils.js
++++ b/node_modules/feathers-vuex/dist/utils.js
+@@ -217,7 +217,7 @@ export function getServicePrefix(servicePath) {
+   const parts = servicePath.split('/')
+   let name = parts[parts.length - 1]
+   // name = inflection.underscore(name)
+-  name = name.replace('-', '_')
++  name = name.replace(/-/g, '_')
+   name = inflection.camelize(name, true)
+   return name
+ }
+@@ -225,7 +225,7 @@ export function getServiceCapitalization(servicePath) {
+   const parts = servicePath.split('/')
+   let name = parts[parts.length - 1]
+   // name = inflection.underscore(name)
+-  name = name.replace('-', '_')
++  name = name.replace(/-/g, '_')
+   name = inflection.camelize(name)
+   return name
+ }
