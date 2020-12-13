@@ -11,7 +11,7 @@ exports.TestsslJobStats = class TestsslJobStats {
 
   async get (id, params) {
     switch (id) {
-      case 'pending':
+      case 'pending': {
         const requestOpts = {
           uri: `${this.kubeConfig.getCurrentCluster().server}/apis/argoproj.io/v1alpha1/namespaces/cylindrical/workflows`,
           ...this.kubeRequestOpts
@@ -20,7 +20,7 @@ exports.TestsslJobStats = class TestsslJobStats {
         try {
           const response = await request.get(requestOpts)
 
-          return  {
+          return {
             id,
             value: response.items.reduce((accumulator, item) => {
               if (item.status === undefined) {
@@ -37,6 +37,7 @@ exports.TestsslJobStats = class TestsslJobStats {
         } catch (error) {
           throw buildKubernetesError(error)
         }
+      }
       case 'pendingMax':
         return { id, value: this.pendingMax }
       default:
