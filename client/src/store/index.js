@@ -5,6 +5,7 @@ import { initFeathers } from './feathers'
 import fingerprint from './fingerprint'
 import makeTestsslArtifactsService from './services/testssl-artifacts'
 import makeTestsslJobsService from './services/testssl-jobs'
+import makeTestsslJobStatsService from './services/testssl-job-stats'
 
 Vue.use(Vuex)
 
@@ -26,7 +27,8 @@ export default function ({ ssrContext }) {
     },
     plugins: [
       makeTestsslArtifactsService(),
-      makeTestsslJobsService()
+      makeTestsslJobsService(),
+      makeTestsslJobStatsService()
     ],
 
     // enable strict mode (adds overhead!)

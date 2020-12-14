@@ -3,7 +3,8 @@
     <div class="q-pa-xs-sm q-pa-sm-md q-pa-lg-lg rounded-borders bg-white">
       <q-form class="q-gutter-md" greedy ref="form" @submit="submit">
         <q-input :label="$t('target')" lazy-rules outlined :rules="targetRules" stack-label v-model="target" />
-        <div class="row justify-end">
+        <div class="row items-center justify-between">
+          <pending />
           <q-btn color="primary" icon="fas fa-play" :label="$t('submit')" :loading="loading" outline type="submit">
             <template v-slot:loading>
               <q-spinner class="on-left" />
@@ -57,6 +58,9 @@ import Joi from '@hapi/joi'
 
 export default {
   name: 'Index',
+  components: {
+    Pending: () => import('components/Pending')
+  },
   mixins: [makeFindMixin({
     service: 'testssl-jobs'
   })],
@@ -116,6 +120,5 @@ export default {
       this.$router.push(`/${testsslJob.id}`)
     }
   }
-
 }
 </script>

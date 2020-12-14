@@ -4,6 +4,7 @@ export default {
   final_score: 'Final score',
   key_exchange: 'Key exchange',
   overall_grade: 'Overall grade',
+  pending_jobs: '{pending} / {pendingMax} pending jobs',
   protocol_support: 'Protocol support',
   score: 'Score',
   submit: 'Submit',
