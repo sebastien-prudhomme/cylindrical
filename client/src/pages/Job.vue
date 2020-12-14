@@ -1,6 +1,12 @@
 <template>
   <q-page class="q-pa-xs-sm q-pa-sm-md q-pa-lg-lg">
-    <div v-if="!testsslJobError">
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+      <div v-if="testsslJobError" class="q-mb-xs-sm q-mb-sm-md q-mb-lg-lg q-pa-xs-sm q-pa-sm-md q-pa-lg-lg text-negative rounded-borders bg-red-2">
+        <q-icon left name="warning" size="md" />
+        {{ testsslJobError.message }}
+      </div>
+    </transition>
+    <div>
       <div class="rounded-borders bg-white">
         <div class="q-pa-xs-sm q-pa-sm-md q-pa-lg-lg">
           <div v-if="testsslJob" class="text-h4 text-weight-bold text-center text-uppercase ellipsis">
@@ -35,10 +41,6 @@
         </div>
       </div>
       <pre v-if="html" class="overflow-auto q-mt-xs-sm q-mt-sm-md q-mt-lg-lg q-mb-none q-pa-xs-sm q-pa-sm-md q-pa-lg-lg text-white rounded-borders bg-blue-grey-10" v-html="html" />
-    </div>
-    <div v-if="testsslJobError" class="q-pa-xs-sm q-pa-sm-md q-pa-lg-lg text-negative rounded-borders bg-red-2">
-      <q-icon left name="warning" size="md" />
-      {{ testsslJobError.message }}
     </div>
   </q-page>
 </template>

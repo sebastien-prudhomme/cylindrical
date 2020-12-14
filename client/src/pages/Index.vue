@@ -1,5 +1,11 @@
 <template>
   <q-page class="q-pa-xs-sm q-pa-sm-md q-pa-lg-lg">
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+      <div v-if="testsslJobsError" class="q-mb-xs-sm q-mb-sm-md q-mb-lg-lg q-pa-xs-sm q-pa-sm-md q-pa-lg-lg text-negative rounded-borders bg-red-2">
+        <q-icon left name="warning" size="md" />
+        {{ testsslJobsError.message }}
+      </div>
+    </transition>
     <div class="q-pa-xs-sm q-pa-sm-md q-pa-lg-lg rounded-borders bg-white">
       <q-form class="q-gutter-md" greedy ref="form" @submit="submit">
         <q-input :label="$t('target')" lazy-rules outlined :rules="targetRules" stack-label v-model="target" />
