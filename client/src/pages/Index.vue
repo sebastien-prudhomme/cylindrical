@@ -22,35 +22,64 @@
     </div>
     <div class="q-mt-xs-sm q-mt-sm-md q-mt-lg-lg">
       <div class="row q-col-gutter-xs-sm q-col-gutter-sm-md q-col-gutter-lg-lg">
-        <div v-for="testsslJob in testsslJobs" :key="testsslJob.id" class="col-xs-12 col-sm-6" >
-          <div class="row cursor-pointer rounded-borders bg-white" @click="$router.push(`/${testsslJob.id}`)">
-            <div class="text-weight-bold col-xs-12 col-md-6 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md text-uppercase ellipsis">
-              {{ parameter(testsslJob, 'target') }}
-            </div>
-            <div class="column items-center justify-center col-xs-6 col-md-3 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md">
-              <div class="text-center">
-                {{ $t('overall_grade') }}
+        <template v-if="haveTestsslJobsLoadedOnce">
+          <div v-for="testsslJob in testsslJobs" :key="testsslJob.id" class="col-xs-12 col-sm-6">
+            <div class="row cursor-pointer rounded-borders bg-white" @click="$router.push(`/${testsslJob.id}`)">
+              <div class="text-weight-bold col-xs-12 col-md-6 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md text-uppercase ellipsis">
+                {{ parameter(testsslJob, 'target') }}
               </div>
-              <div class="q-mt-xs-xs q-mt-sm-sm q-mt-lg-md">
-                <q-avatar v-if="finding(testsslJob, 'overall_grade')" :color="gradeColor(finding(testsslJob, 'overall_grade'))" rounded size="64px" text-color="white">
-                  {{ finding(testsslJob, 'overall_grade') }}
-                </q-avatar>
-                <q-skeleton v-else animation="fade" size="64px" type="rect" />
+              <div class="column items-center justify-center col-xs-6 col-md-3 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md">
+                <div class="text-center">
+                  {{ $t('overall_grade') }}
+                </div>
+                <div class="q-mt-xs-xs q-mt-sm-sm q-mt-lg-md">
+                  <q-avatar v-if="finding(testsslJob, 'overall_grade')" :color="gradeColor(finding(testsslJob, 'overall_grade'))" rounded size="64px" text-color="white">
+                    {{ finding(testsslJob, 'overall_grade') }}
+                  </q-avatar>
+                  <q-skeleton v-else animation="fade" size="64px" type="rect" />
+                </div>
               </div>
-            </div>
-            <div class="column items-center justify-center col-xs-6 col-md-3 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md">
-              <div class="text-center">
-                {{ $t('final_score') }}
-              </div>
-              <div class="q-mt-xs-xs q-mt-sm-sm q-mt-lg-md">
-                <q-avatar v-if="finding(testsslJob, 'final_score')" :color="scoreColor(finding(testsslJob, 'final_score'))" rounded size="64px" text-color="white">
-                  {{ finding(testsslJob, 'final_score') }}
-                </q-avatar>
-                <q-skeleton v-else animation="fade" size="64px" type="rect" />
+              <div class="column items-center justify-center col-xs-6 col-md-3 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md">
+                <div class="text-center">
+                  {{ $t('final_score') }}
+                </div>
+                <div class="q-mt-xs-xs q-mt-sm-sm q-mt-lg-md">
+                  <q-avatar v-if="finding(testsslJob, 'final_score')" :color="scoreColor(finding(testsslJob, 'final_score'))" rounded size="64px" text-color="white">
+                    {{ finding(testsslJob, 'final_score') }}
+                  </q-avatar>
+                  <q-skeleton v-else animation="fade" size="64px" type="rect" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </template>
+        <template v-else>
+          <div v-for="id in [1, 2]" :key="id" class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-6">
+              <div class="row rounded-borders bg-white">
+                <div class="col-xs-12 col-md-6 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md">
+                  <q-skeleton animation="fade" height="21px" type="rect" width="192px" />
+                </div>
+                <div class="column items-center justify-center col-xs-6 col-md-3 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md">
+                  <div class="text-center">
+                    {{ $t('overall_grade') }}
+                  </div>
+                  <div class="q-mt-xs-xs q-mt-sm-sm q-mt-lg-md">
+                    <q-skeleton animation="fade" size="64px" type="rect" />
+                  </div>
+                </div>
+                <div class="column items-center justify-center col-xs-6 col-md-3 q-pa-xs-xs q-pa-sm-sm q-pa-lg-md">
+                  <div class="text-center">
+                    {{ $t('final_score') }}
+                  </div>
+                  <div class="q-mt-xs-xs q-mt-sm-sm q-mt-lg-md">
+                    <q-skeleton animation="fade" size="64px" type="rect" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
   </q-page>
