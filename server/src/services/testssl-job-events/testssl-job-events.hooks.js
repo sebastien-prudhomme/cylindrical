@@ -1,5 +1,5 @@
-const Joi = require('@hapi/joi')
-const validateJoi = require('@feathers-plus/validate-joi')
+const Joi = require('joi')
+const validateJoi = require('feathers-validate-joi')
 
 const joiCreateSchema = Joi.object({
   event: Joi.string().trim().min(1)

@@ -1,6 +1,6 @@
 const { disallow } = require('feathers-hooks-common')
-const Joi = require('@hapi/joi')
-const validateJoi = require('@feathers-plus/validate-joi')
+const Joi = require('joi')
+const validateJoi = require('feathers-validate-joi')
 const { paramsFromClient, populate } = require('feathers-graph-populate')
 
 const joiCreateSchema = Joi.object({
