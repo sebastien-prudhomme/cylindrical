@@ -89,7 +89,7 @@
 import { makeFindMixin } from 'feathers-vuex'
 import { jobFindingHelper, jobGradeColorHelper, jobParameterHelper, jobScoreColorHelper } from '../helpers/job'
 import { validateHelper } from '../helpers/validate'
-import Joi from '@hapi/joi'
+import Joi from 'joi'
 
 export default {
   name: 'Index',
